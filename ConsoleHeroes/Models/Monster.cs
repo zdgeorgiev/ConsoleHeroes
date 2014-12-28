@@ -80,13 +80,27 @@ namespace ConsoleHeroes.Models
             }
         }
 
+        public string ImagePath { get; set; }
+
         private Dictionary<string, int> Drop { get; set; }
 
-        //All monsters have the same health so only the names will be different
-        private readonly List<string> MonsterNames =
-            new List<string>() { "Monster1", "Monster2", "Monster3", "Monster4" };
+        private readonly List<string> MonsterNames = new List<string>()
+        {
+            "Daemon",
+            "Beelzemon",
+            "Greymon",
+            "Seasarmon"
+        };
 
-        private Monster(int level, int life, int goldDrop, MonsterType monsterType = MonsterType.Normal)
+        private readonly Dictionary<string, string> MonsterUIInfo = new Dictionary<string,string>()
+        {
+            { "Daemon", "Assets/daemon.png" },
+            { "Beelzemon", "Assets/beelzemon.png" },
+            { "Greymon", "Assets/greymon.png" },
+            { "Seasarmon", "Assets/seasarmon.png" },
+        };
+
+        public Monster(int level, int life, int goldDrop, MonsterType monsterType = MonsterType.Normal)
         {
             this.Level = level;
 
@@ -108,8 +122,11 @@ namespace ConsoleHeroes.Models
             this.Drop.Add("Gold", goldDrop);
             this.Drop.Add("Souls", this.ConsoleSouls);
 
-            //return random name for the current monster
-            this.Name = this.MonsterNames[new Random().Next(0, this.MonsterNames.Count)];
+            //Return the random UI for the monster
+            int randomNumber = new Random().Next(0, this.MonsterNames.Count);
+            
+            this.Name = this.MonsterNames[randomNumber];
+            this.ImagePath = this.MonsterUIInfo[this.Name];
         }
 
         /// <summary>

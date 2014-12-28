@@ -68,7 +68,8 @@
                                                        FontSize="20" Foreground="Yellow"/>
                                                 <Label Content="{Binding Level}" 
                                                        FontSize="20" Foreground="Yellow"/>
-                                                <Image Source="{Binding ImagePath}" Width="130" Height="100" HorizontalAlignment="Right"/>
+                                                <Image Source="{Binding ImagePath}" Width="130" Height="100"
+                                                       HorizontalAlignment="Right"/>
                                             </TextBlock>
                                         </TextBlock>
                                         <TextBlock/>
@@ -80,10 +81,35 @@
                 </Grid>
             </StackPanel>
         </Grid>
-        
+
         <!--Monster tab-->
-        <Grid Width="650" HorizontalAlignment="Right" Margin="10">
-            
+        <Grid Width="650" HorizontalAlignment="Right" Margin="10" DataContext="{Binding Monster}">
+            <StackPanel>
+                <TextBlock TextAlignment="Center" FontSize="40">
+                    <Label Content="LVL - " Foreground="White" FontWeight="Bold"/>
+                    <Label Content="{Binding Level}" Foreground="Wheat" FontWeight="Bold"/>
+                </TextBlock>
+                <TextBlock TextAlignment="Center" FontSize="20">
+                    <Label Content="{Binding Lifes}" Foreground="Honeydew" FontWeight="Bold" Padding="10,10,0,10"/>
+                    <Label Content="/10" Foreground="Honeydew" FontWeight="Bold" Padding="0,10,10,10"/>
+                </TextBlock>
+
+                <Image Width="400" Height="350" Source="{Binding ImagePath}"/>
+                
+                <TextBlock TextAlignment="Center">
+                    <TextBlock FontSize="40">
+                        <Label Content="{Binding Name}" Foreground="PowderBlue" FontWeight="Light"/>
+                        <Label Content=", LVL" Foreground="PowderBlue" FontWeight="Light"/>
+                        <Label Content="{Binding Level}" Foreground="PowderBlue" FontWeight="Light"/>
+                    </TextBlock>
+                </TextBlock>
+                <TextBlock TextAlignment="Center">
+                    <TextBlock FontSize="40">
+                        <Label Content="{Binding Life}" Foreground="White" FontWeight="Light"/>
+                        <Label Content="HP" Foreground="White" FontWeight="Light"/>
+                    </TextBlock>
+                </TextBlock>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

@@ -120,6 +120,14 @@
   <ItemGroup>
     <Resource Include="Assets\paladin.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\beelzemon.png" />
+    <Resource Include="Assets\daemon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\greymon.png" />
+    <Resource Include="Assets\seasarmon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
