@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ConsoleHeroes.Models.Player">
+    <Position X="1.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAEAAAAAgAAgIAACAAAAAAAAAAACCE=</HashCode>
+      <FileName>Models\Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleHeroes.Models.Monster">
+    <Position X="3.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AKAAAAAAAAAQAAAkAAAEEgQBAAAEAAADAAAAAAABAQA=</HashCode>
+      <FileName>Models\Monster.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleHeroes.Models.Hero">
+    <Position X="10" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAAAAAAAAMEAAAAAQBAAAAAAgBAAAAAAAACBA=</HashCode>
+      <FileName>Models\Hero.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ConsoleHeroes.Models.Engine">
+    <Position X="5.75" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AIIQAAAAACAIAAAABAAAAAAAgAIAAAAAIgAAAQgAAEA=</HashCode>
+      <FileName>Models\Engine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleHeroes.Models.Paladin" Collapsed="true">
+    <Position X="11" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Paladin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleHeroes.Models.Zombie" Collapsed="true">
+    <Position X="8.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Zombie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConsoleHeroes.Commands.RelayCommand" Collapsed="true">
+    <Position X="12.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEACAAQAAECAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ConsoleHeroes.ViewModels.BaseViewModel" Collapsed="true">
+    <Position X="2.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ConsoleHeroes.ViewModels.ConsoleHeroesModelView" Collapsed="true">
+    <Position X="4.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAgAAAAAABBgAAAQYAgAA=</HashCode>
+      <FileName>ViewModels\ConsoleHeroesModelView.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ConsoleHeroes.Models.MonsterType">
+    <Position X="1.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\BossType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="ConsoleHeroes.Commands.ExecuteCommandDelegate" Collapsed="true">
+    <Position X="13.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\ExecuteCommandDelegate.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="ConsoleHeroes.Commands.CanExecuteCommandDelegate" Collapsed="true">
+    <Position X="12" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Commands\ExecuteCommandDelegate.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
