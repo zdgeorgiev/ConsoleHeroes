@@ -9,10 +9,10 @@ namespace ConsoleHeroes.Models
     public abstract class Hero : BaseViewModel, ICloneable
     {
         private string name;
-        private int damagePerSecond;
-        private int goldCost;
+        private long damagePerSecond;
+        private long goldCost;
         private int level;
-        private int totalDamage;
+        private long totalDamage;
 
         public string Name
         {
@@ -24,7 +24,7 @@ namespace ConsoleHeroes.Models
             }
         }
 
-        public int DamagePerSecond
+        public long DamagePerSecond
         {
             get { return this.damagePerSecond; }
             set
@@ -34,7 +34,7 @@ namespace ConsoleHeroes.Models
             }
         }
 
-        public int GoldCost
+        public long GoldCost
         {
             get { return this.goldCost; }
             set
@@ -54,7 +54,7 @@ namespace ConsoleHeroes.Models
             }
         }
 
-        public int TotalDamage
+        public long TotalDamage
         {
             get { return this.totalDamage; }
             private set
@@ -66,11 +66,11 @@ namespace ConsoleHeroes.Models
 
         public string ImagePath { get; set; }
 
-        public int BaseHeroDamage { get; private set; }
+        public long BaseHeroDamage { get; private set; }
 
-        public int BaseHeroGoldCost { get; private set; }
+        public long BaseHeroGoldCost { get; private set; }
 
-        public Hero(string name, int damagePerSecond, int goldCost)
+        public Hero(string name, long damagePerSecond, long goldCost)
         {
             this.Name = name;
             this.DamagePerSecond = damagePerSecond;

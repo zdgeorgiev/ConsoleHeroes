@@ -11,10 +11,10 @@ namespace ConsoleHeroes.Models
         private const int PrimalBossChance = 15;
         private const int MonsterLifes = 10;
 
-        private int ConsoleSouls = 0;
+        private long ConsoleSouls = 0;
 
         private string name;
-        private int life;
+        private long life;
         private int level;
         private int lifes;
         private MonsterType monsterType;
@@ -30,7 +30,7 @@ namespace ConsoleHeroes.Models
             }
         }
 
-        public int Life
+        public long Life
         {
             get { return this.life; }
             set
@@ -82,7 +82,7 @@ namespace ConsoleHeroes.Models
 
         public string ImagePath { get; set; }
 
-        private Dictionary<string, int> Drop { get; set; }
+        private Dictionary<string, long> Drop { get; set; }
 
         private readonly List<string> MonsterNames = new List<string>()
         {
@@ -100,7 +100,7 @@ namespace ConsoleHeroes.Models
             { "Seasarmon", "Assets/seasarmon.png" },
         };
 
-        public Monster(int level, int life, int goldDrop, MonsterType monsterType = MonsterType.Normal)
+        public Monster(int level, long life, long goldDrop, MonsterType monsterType = MonsterType.Normal)
         {
             this.Level = level;
 
@@ -118,7 +118,7 @@ namespace ConsoleHeroes.Models
                 this.Life = life;
             }
 
-            this.Drop = new Dictionary<string, int>();
+            this.Drop = new Dictionary<string, long>();
             this.Drop.Add("Gold", goldDrop);
             this.Drop.Add("Souls", this.ConsoleSouls);
 
@@ -136,7 +136,7 @@ namespace ConsoleHeroes.Models
         /// <param name="life">life of the new hero</param>
         /// <param name="goldDrop">gol drop of the new hero</param>
         /// <returns></returns>
-        public static Monster CreateMonster(int level = 1, int life = 20, int goldDrop = 1)
+        public static Monster CreateMonster(int level = 1, long life = 20, long goldDrop = 1)
         {
             return new Monster(level, life, goldDrop);
         }
@@ -173,7 +173,7 @@ namespace ConsoleHeroes.Models
         /// When monster is dead player recieve the gold console souls monster gives.
         /// </summary>
         /// <returns>golds and console souls</returns>
-        public Dictionary<string, int> Reward()
+        public Dictionary<string, long> Reward()
         {
             return this.Drop;
         }

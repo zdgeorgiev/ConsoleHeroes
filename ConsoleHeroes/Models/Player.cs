@@ -9,11 +9,11 @@ namespace ConsoleHeroes.Models
 {
     public class Player : BaseViewModel
     {
-        private int damagePerSecond;
-        private int gold;
-        private int consoleSouls;
+        private long damagePerSecond;
+        private long gold;
+        private long consoleSouls;
 
-        public int DamagePerSecond
+        public long DamagePerSecond
         {
             get { return this.damagePerSecond; }
             set
@@ -23,7 +23,7 @@ namespace ConsoleHeroes.Models
             }
         }
 
-        public int Gold
+        public long Gold
         {
             get { return this.gold; }
             set
@@ -33,7 +33,7 @@ namespace ConsoleHeroes.Models
             }
         }
 
-        public int ConsoleSouls
+        public long ConsoleSouls
         {
             get { return this.consoleSouls; }
             set
@@ -45,7 +45,7 @@ namespace ConsoleHeroes.Models
 
         public ObservableCollection<Hero> AllHeroes { get; set; }
 
-        public Player(int startingDPS = 1, int startingGold = 0)
+        public Player(long startingDPS = 1, long startingGold = 0)
         {
             this.DamagePerSecond = startingDPS;
             this.Gold = startingGold;
@@ -100,11 +100,6 @@ namespace ConsoleHeroes.Models
 
                 this.DamagePerSecond += targetHero.DamagePerSecond;
             }
-            //else
-            //{
-            //    throw new ArgumentException(
-            //        string.Format("Not enough gold. \n\t Required: {0}\n\t You have: {1}", targetHero.GoldCost, this.Gold));
-            //}
         }
 
         /// <summary>
@@ -112,7 +107,7 @@ namespace ConsoleHeroes.Models
         /// calculated from the damage of heroes he got
         /// </summary>
         /// <returns>dps</returns>
-        public int Attack()
+        public long Attack()
         {
             return this.DamagePerSecond;
         }
@@ -121,9 +116,9 @@ namespace ConsoleHeroes.Models
         /// Returns the current gold and souls that player have
         /// </summary>
         /// <returns></returns>
-        public int[] GetCurrentGoldAndSouls()
+        public long[] GetCurrentGoldAndSouls()
         {
-            int[] goldAndSouls = new int[2];
+            long[] goldAndSouls = new long[2];
             goldAndSouls[0] = this.Gold;
             goldAndSouls[1] = this.ConsoleSouls;
 
@@ -134,7 +129,7 @@ namespace ConsoleHeroes.Models
         /// Collect reward in gold and souls
         /// </summary>
         /// <param name="rewards">gold and souls</param>
-        public void ClaimReward(Dictionary<string, int> rewards)
+        public void ClaimReward(Dictionary<string, long> rewards)
         {
             this.Gold += rewards["Gold"];
             this.ConsoleSouls += rewards["Souls"];

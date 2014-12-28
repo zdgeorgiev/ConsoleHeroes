@@ -11,6 +11,7 @@ using ConsoleHeroes.Commands;
 using ConsoleHeroes.Models;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Windows.Threading;
 
 namespace ConsoleHeroes.ViewModels
 {
@@ -21,12 +22,11 @@ namespace ConsoleHeroes.ViewModels
 
         private const string PlayerSavePath = "../../save.txt";
 
-        private static int currentMonsterLife;
+        private long CurrentMonsterLife { get; set; }
 
         private Player player;
         private Monster monster;
 
-        private ICommand attack;
         private ICommand buyHero;
 
         public Player Player
@@ -51,8 +51,9 @@ namespace ConsoleHeroes.ViewModels
 
         public ConsoleHeroesModelView()
         {
-            this.Player = new Player(1, 1000);
+            this.Player = new Player();
             this.Monster = Monster.CreateMonster();
+            this.CurrentMonsterLife = this.Monster.Life;
 
             this.Player.AllHeroes = new ObservableCollection<Hero>()
             {
@@ -62,19 +63,12 @@ namespace ConsoleHeroes.ViewModels
 
             this.Player.DamagePerSecond += this.Player.AllHeroes[0].DamagePerSecond;
             this.Player.DamagePerSecond += this.Player.AllHeroes[1].DamagePerSecond;
-        }
 
-        public ICommand Attack
-        {
-            get
-            {
-                if (this.attack == null)
-                {
-                    this.attack = new RelayCommand(this.PerformAttack);
-                }
-
-                return this.attack;
-            }
+            //Perform the attack in every 1/10 in each second for good looking transition
+            var dispatcher = new DispatcherTimer();
+            dispatcher.Tick += dispatcher_Tick;
+            dispatcher.Interval = new TimeSpan(1000000);
+            dispatcher.Start();
         }
 
         public ICommand BuyHero
@@ -88,6 +82,11 @@ namespace ConsoleHeroes.ViewModels
 
                 return this.buyHero;
             }
+        }
+
+        private void dispatcher_Tick(object sender, EventArgs e)
+        {
+            this.PerformAttack();
         }
 
         private void BuyZombie(object obj)
@@ -109,11 +108,11 @@ namespace ConsoleHeroes.ViewModels
             using (StreamReader reader = new StreamReader(PlayerSavePath))
             {
                 string[] goldAndSouls = reader.ReadLine().Split('~');
-                int playerGold = int.Parse(goldAndSouls[0]);
-                int playerSouls = int.Parse(goldAndSouls[1]);
+                long playerGold = long.Parse(goldAndSouls[0]);
+                long playerSouls = long.Parse(goldAndSouls[1]);
 
                 //Claim the gold and souls via Claim reward method
-                Player.ClaimReward(new Dictionary<string, int>()
+                Player.ClaimReward(new Dictionary<string, long>()
                     {
                         { "Gold", playerGold },
                         { "Souls", playerSouls }
@@ -122,11 +121,11 @@ namespace ConsoleHeroes.ViewModels
 
                 string[] monsterStats = reader.ReadLine().Split(',');
                 int level = int.Parse(monsterStats[0]);
-                int life = int.Parse(monsterStats[1]);
-                int goldDropped = int.Parse(monsterStats[2]);
+                long life = long.Parse(monsterStats[1]);
+                long goldDropped = long.Parse(monsterStats[2]);
 
                 this.Monster = Monster.CreateMonster(level, life, goldDropped);
-                currentMonsterLife = Monster.Life;
+                CurrentMonsterLife = Monster.Life;
 
                 string pattern = "[A-Z][0-9]*";
 
@@ -153,7 +152,7 @@ namespace ConsoleHeroes.ViewModels
                             for (int j = 1; j < targetHeroLevel; j++)
                             {
                                 //Simulate to add the gold needed to level up the monster via Claim reward method.
-                                Player.ClaimReward(new Dictionary<string, int>()
+                                Player.ClaimReward(new Dictionary<string, long>()
                                 {
                                     {"Gold", targetHero.GoldCost},
                                     {"Souls", 0}
@@ -170,21 +169,21 @@ namespace ConsoleHeroes.ViewModels
         /// <summary>
         /// Player performs attack to the current monster
         /// </summary>
-        private void PerformAttack(object obj)
+        private void PerformAttack()
         {
-            this.Monster.Life -= this.Player.Attack();
+            this.Monster.Life -= this.Player.Attack() / 10;
 
             if (this.Monster.Life <= 0)
             {
                 this.Monster.Lifes--;
                 this.Player.ClaimReward(Monster.Reward());
-                this.Monster.Life = currentMonsterLife;
+                this.Monster.Life = CurrentMonsterLife;
             }
 
             if (this.Monster.Lifes == 0)
             {
                 this.Monster = this.Monster.LevelUp();
-                currentMonsterLife = this.Monster.Life;
+                CurrentMonsterLife = this.Monster.Life;
             }
         }
 
@@ -217,10 +216,10 @@ namespace ConsoleHeroes.ViewModels
                 case Exit:
 
                     //Before exit overrides the last save code in the external text file
-                    int[] rawGoldAndSouls = Player.GetCurrentGoldAndSouls();
+                    long[] rawGoldAndSouls = Player.GetCurrentGoldAndSouls();
                     string goldAndSouls = rawGoldAndSouls[0] + "~" + rawGoldAndSouls[1];
 
-                    string monsterStats = Monster.Level + "," + currentMonsterLife + "," + Monster.Reward()["Gold"];
+                    string monsterStats = Monster.Level + "," + CurrentMonsterLife + "," + Monster.Reward()["Gold"];
 
                     string heroesLibrary = String.Empty;
 
