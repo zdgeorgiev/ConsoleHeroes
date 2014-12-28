@@ -45,8 +45,7 @@
                                                HorizontalContentAlignment="Right"
                                                Width="400"/>
                                         <TextBlock Height="100">
-                                            <Button FontSize="20" Foreground="White"
-                                                    Width="120" Height="80" HorizontalAlignment="Left">
+                                            <Button FontSize="20" Width="120" Height="80">
                                                 <Button.Content>
                                                     <StackPanel>
                                                         <Label Content="LVL UP"
@@ -82,6 +81,36 @@
             </StackPanel>
         </Grid>
 
+        <!--Buttons Manual-->
+        <TextBlock DataContext="{Binding}" VerticalAlignment="Bottom" Margin="50">
+            <Button FontSize="20" Foreground="White"
+                    Width="120" Height="80" HorizontalAlignment="Left"
+                    Command="{Binding BuyHero}">
+                <Button.Content>
+                    <StackPanel DataContext="{Binding Player.AllHeroes}">
+                        <Label Content="Buy Zombie"
+                               HorizontalContentAlignment="Center"/>
+                        <TextBlock>
+                            <Image Source="Assets/coin.png" Width="40" Height="40"/>
+                            <Label Content="{Binding GoldCost}" FontSize="20"
+                                   HorizontalContentAlignment="Center"
+                                   Background="Transparent"/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button FontSize="20" Foreground="White"
+                    Width="120" Height="80" HorizontalAlignment="Left"
+                    Command="{Binding Attack}">
+                <Button.Content>
+                    <StackPanel DataContext="{Binding Player.AllHeroes}">
+                        <Label Content="Attack"
+                               HorizontalContentAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </TextBlock>
+
         <!--Monster tab-->
         <Grid Width="650" HorizontalAlignment="Right" Margin="10" DataContext="{Binding Monster}">
             <StackPanel>
@@ -95,7 +124,7 @@
                 </TextBlock>
 
                 <Image Width="400" Height="350" Source="{Binding ImagePath}"/>
-                
+
                 <TextBlock TextAlignment="Center">
                     <TextBlock FontSize="40">
                         <Label Content="{Binding Name}" Foreground="PowderBlue" FontWeight="Light"/>
